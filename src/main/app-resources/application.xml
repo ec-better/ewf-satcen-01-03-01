@@ -2,13 +2,8 @@
   <jobTemplates>
     <jobTemplate id="notebook">
       <streamingExecutable>/application/notebook/run</streamingExecutable>
-      <defaultParameters>
-        <parameter id="resolution" title="Target resolution" abstract="Target resolution (10m, 20m or 60m)" maxOccurs="1" scope="runtime" type="LiteralData">10</parameter>
-        <parameter id="percentage_threshold" title="Cloud percentage threshold" abstract="Cloud percentage threshold" maxOccurs="1" scope="runtime" type="LiteralData">20.0</parameter>
-        <parameter id="wkt" title="Protected Area wkt" abstract="Protected Area wkt" maxOccurs="1" scope="runtime" type="LiteralData">POLYGON((14.9997721265064 38.0212298555682,15.0339421243074 38.1469295398089,15.076722011609 38.2943830685215,15.1196939590664 38.4418167678655,15.1628416993738 38.5892613166416,15.2061510925436 38.7366798078584,15.2388261265461 38.8477042183055,16.2649601148006 38.8421486728812,16.2478654087227 37.8528295032852,14.9997726359092 37.8594419593273,14.9997721265064 38.0212298555682))</parameter>
-        <parameter id="flag_expr" title="Flag expression for pixel exclusion" abstract="Flag expression for pixel exclusion (e.g. saturated_l1a_B4 will exclude pixels having the flag saturated_l1a_B4 set)" maxOccurs="1" scope="runtime" type="LiteralData">( saturated_l1a_B4 or scl_water )</parameter>
-      </defaultParameters>
-      <defaultJobconf>
+      <defaultParameters><parameter id="resolution" title="Target resolution" abstract="Target resolution (10m, 20m or 60m)" maxOccurs="1" scope="runtime" type="LiteralData">10</parameter><parameter id="percentage_threshold" title="Cloud percentage threshold" abstract="Cloud percentage threshold" maxOccurs="1" scope="runtime" type="LiteralData">20.0</parameter><parameter id="wkt" title="Protected Area wkt" abstract="Protected Area wkt" maxOccurs="1" scope="runtime" type="LiteralData">POLYGON((14.9997721265064 38.0212298555682,15.0339421243074 38.1469295398089,15.076722011609 38.2943830685215,15.1196939590664 38.4418167678655,15.1628416993738 38.5892613166416,15.2061510925436 38.7366798078584,15.2388261265461 38.8477042183055,16.2649601148006 38.8421486728812,16.2478654087227 37.8528295032852,14.9997726359092 37.8594419593273,14.9997721265064 38.0212298555682))</parameter><parameter id="flag_expr" title="Flag expression for pixel exclusion" abstract="Flag expression for pixel exclusion (e.g. saturated_l1a_B4 will exclude pixels having the flag saturated_l1a_B4 set)" maxOccurs="1" scope="runtime" type="LiteralData">( saturated_l1a_B4 or scl_water )</parameter></defaultParameters>
+     <defaultJobconf>
         <property id="mapred.task.timeout">9900000000000</property>
       </defaultJobconf>
     </jobTemplate>
@@ -18,7 +13,7 @@
     <node id="notebook">
       <job id="notebook"/>
       <sources>
-        <source id="source" title="Input references" abstract="Input references" refid="string:list" scope="runtime">https://catalog.terradue.com/sentinel2/search?uid=S2A_MSIL2A_20181007T094031_N0208_R036_T33SVB_20181007T130142</source>
+        <source id="source" title="Input references" abstract="Input references" refid="string:list" scope="runtime">https://catalog.terradue.com/sentinel2/search?uid=S2B_MSIL2A_20180803T094029_N0208_R036_T33SWC_20180803T141742</source>
       </sources>
     </node>
   </workflow>
