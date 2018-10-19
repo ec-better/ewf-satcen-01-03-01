@@ -11,6 +11,7 @@ from nbconvert.preprocessors import ExecutePreprocessor, CellExecutionError
 import nbformat as nbf
 import uuid
 import ast
+import re
 
 sys.path.append('/opt/anaconda/bin/')
 import cioppy
@@ -159,16 +160,20 @@ def execute(download_location, reference, nb_source, nb_target, kernel = 'python
 
     try:
       out = ep.preprocess(nb, {'metadata': {'path': './'}})
-    except CellExecutionError:
-      out = None
-      ciop.log('ERROR', 'Error executing the notebook "%s".' % nb_source)
+    except CellExecutionError as e:
+      match = re.search("AssertionError: ([^\\n]+)", str(e))
+      if match:
+        ciop.log('INFO', '%s [notebook execution stopped]' % match.groups(1))
+      else:
+        out = None
+        ciop.log('ERROR', 'Error executing the notebook "%s".' % nb_source)
 
-      with io.open(nb_target, 'wb') as file:
-        file.write(nbf.writes(nb))
-        file.close()
+        with io.open(nb_target, 'wb') as file:
+          file.write(nbf.writes(nb))
+          file.close()
       
-      ciop.publish(nb_target, metalink=True)
-      raise
+        ciop.publish(nb_target, metalink=True)
+        raise
     finally:
       ciop.log('INFO', 'Write notebook')  
       with io.open(nb_target, 'wb') as file:
@@ -216,7 +221,8 @@ def main():
       # execute the notebook
       nb_source = os.path.join('/application', 'notebook', 'libexec', 'input.ipynb')
       nb_target = os.path.join(runtime, 'result.ipynb')  
-      execute(local_files[-1], reference, nb_source, nb_target, 'python2')  
+      
+      execute(local_files[-1], reference, nb_source, nb_target, 'python2')
     
       # publish
       publish(runtime)   

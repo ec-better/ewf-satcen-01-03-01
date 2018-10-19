@@ -13,7 +13,7 @@
     <node id="notebook">
       <job id="notebook"/>
       <sources>
-        <source id="source" title="Input references" abstract="Input references" refid="string:list" scope="runtime">https://catalog.terradue.com/sentinel2/search?uid=S2B_MSIL2A_20180803T094029_N0208_R036_T33SWC_20180803T141742</source>
+        <source id="source" title="Input references" abstract="Input references" refid="string:list" scope="runtime">https://catalog.terradue.com/sentinel2/search?uid=S2B_MSIL2A_20181015T095029_N0209_R079_T33SVB_20181015T144126</source>
       </sources>
     </node>
   </workflow>
